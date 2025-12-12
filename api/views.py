@@ -107,14 +107,12 @@ def StudentDetailVew(request,pk):
 #          return Response(serializer.errors,status = HTTP_400_BAD_REQUEST)
 #
 #
-#
 #     def delete(self,request,pk):
 #         employee = self.get_object(pk)
 #         employee.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-
+"""#---MIXINS
 class Employees(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
     queryset = Employee.objects.all()
     serializer_class =   EmployeeSerializer
@@ -125,8 +123,7 @@ class Employees(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAP
     def post(self,request):
         return self.create(request)
 
-
-
+#MIXINS
 class EmployeeDetail(mixins.RetrieveModelMixin,mixins.UpdateModelMixin,mixins.DestroyModelMixin,generics.GenericAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
@@ -139,9 +136,19 @@ class EmployeeDetail(mixins.RetrieveModelMixin,mixins.UpdateModelMixin,mixins.De
 
     def delete(self,request,pk):
         return self.destroy(request.pk)
+"""
 
 
+#Generics
+class Employees(generics.ListCreateAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
 
+#Generics
+class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+    Lookup_field = 'pk'
 
 
 

@@ -9,5 +9,8 @@ urlpatterns = [
     path('students/', views.studentView),
     path('student/<int:pk>/', views.StudentDetailVew),
 
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('blogs/',views.BlogsView.as_view()),
+    path('comments/',views.CommentView.as_view()),
 ]
+

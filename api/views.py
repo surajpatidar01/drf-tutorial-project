@@ -22,7 +22,7 @@ from blogs.serializers import BlogSerializer,CommentSerializer
 from . paginations import CustomPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from employees.filters import EmployeeFilter
-from rest_framework.filters import SearchFilter
+from rest_framework.filters import SearchFilter,OrderingFilter
 
 
 
@@ -215,8 +215,9 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 class BlogsView(generics.ListCreateAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter,OrderingFilter]
     search_fields = ['blog_title','blog_body']
+    ordering_fields = ['id','bogtitle']
 
 
 class BlogDetailView(generics.RetrieveUpdateDestroyAPIView):

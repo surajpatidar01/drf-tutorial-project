@@ -10,7 +10,7 @@ urlpatterns = [
     path('student/<int:pk>/', views.StudentDetailVew),
 
     path('', include(router.urls)),
-    path('blogs/',views.BlogsView.as_view()),
+    path('blogs/',views.BlogDetailView.as_view()),
     path('comments/',views.CommentView.as_view()),
 
     path('blogs/<int:pk>/',views.BlogDetailView.as_view()),
